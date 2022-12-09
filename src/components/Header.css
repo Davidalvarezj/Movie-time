@@ -1,0 +1,38 @@
+
+
+/*---- Navbar---- */
+.navbar {
+    
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    /* backdrop-filter: blur(3.5px); */
+    /* border: 1px solid rgba(255, 255, 255, 0.21); */
+}
+.carticon{
+    padding-right: 200px ;
+}
+
+
+
+
+.search-row{
+flex-wrap: nowrap;
+}
+
+
+@media (max-width: 760px) {
+
+
+    .searchclass {
+        margin-top: 10px;
+        width: 90vw !important;
+        margin-left: 10px !important;
+    }
+    .carticon {
+        padding-right: 0px;
+        width: 40px;
+        margin: 0 auto;
+    }
+
+}
