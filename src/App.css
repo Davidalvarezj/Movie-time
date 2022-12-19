@@ -22,6 +22,36 @@
   font-size: calc(10px + 2vmin);
 }
 
+.imgmovie {
+  border-radius: 10px;
+}
+
+.moviecard {
+  height: 330px;
+  transition: all 2s ease;
+  transform: scale(1);
+}
+.moviecard:hover {
+  background: rgba(0, 0, 0, 0.0);
+  transition: all 1s ease;
+  filter: brightness(80%);
+  transform: scale(1.5);
+  z-index: 10;
+}
+
+
+.hoverText {
+  display: none;
+
+}
+
+.hoverText.active {
+  display: block;
+}
+
+
+
+
 .App-link {
   color: rgb(112, 76, 182);
 }

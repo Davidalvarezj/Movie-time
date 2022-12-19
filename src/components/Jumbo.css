@@ -1,13 +1,14 @@
 
 
 .jumbo-main{
-        padding-top: 100px !important; 
+        padding-top: 200px !important; 
         color: white;
         background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url("../img/4fxxbm4opjd31.webp");
-        box-shadow: 0px 100px 100px rgba(102, 222, 241, 0.1);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
         text-shadow: 2px 2px 4px #000000;
+        box-shadow: -0px -100px 100px  10px rgba(0, 0, 0, 0.5) inset;
+        height: 60vh;
 
 }

@@ -4,6 +4,7 @@ import "bootstrap-social/bootstrap-social.css";
 import "font-awesome/css/font-awesome.css";
 import "typeface-lobster";
 import "typeface-open-sans";
+import { BrowserRouter } from "react-router-dom";
 
 
 import { createRoot } from 'react-dom/client';
@@ -18,9 +19,11 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
