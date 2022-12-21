@@ -17,57 +17,73 @@ import {
 } from "reactstrap";
 
 
-const Movieinfo = () => {
-
+const Movieinfo = ({ cartArray, setCartArray }) => {
   const [movie, setMovie] = useState([]);
   const [trailer, settrailer] = useState([]);
   const [objComment, setobjComment] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
-const [modalOpen2, setModalOpen2] = useState(false);
+  const [modalOpen2, setModalOpen2] = useState(false);
 
   const IMAGE_PATH = "https://www.themoviedb.org/t/p/original";
+    const IMAGE_PATH_SMALL = "https://www.themoviedb.org/t/p/w500";
   const { movieId } = useParams();
   let bgimage = IMAGE_PATH + movie.backdrop_path;
 
+ useEffect(() => {
+    async function fetch() {
+      const data = await APIdetail(movieId);
+      setMovie(data);
+    }
+    fetch();
+  }, []);
+
+  useEffect(() => {
+    console.log("")
+    async function fetch() {
+      const data = await APIvideo(movieId);
+      const video = data.find((elm) => {
+        return elm.name.includes("Official") || elm.name.includes("Trailer") || elm.name.includes("TRAILER");
+      });
+      console.log("video",video)
+      console.log("data",data)
+      settrailer(video ? video : data[0]);
+    }
+    fetch();
+  }, [modalOpen]);
 
 
-https: useEffect(() => {
-  async function fetch() {
-    const data = await APIdetail(movieId);
-    setMovie(data);
+
+
+
+
+
+
+
+
+  const handleSubmit = (values) => {
+    const comment = {
+      rating: values.rating,
+      author: values.author,
+      text: values.commentText,
+    };
+    setobjComment(comment);
+    setModalOpen2(false);
+  };
+
+
+  const handdleCartclick = ()=>{
+    const cartItem = {
+      name: movie.title,
+      image: IMAGE_PATH_SMALL + movie.poster_path,
+      price: movie.revenue,
+    };
+    setCartArray([...cartArray, cartItem]);
+    console.log(cartItem);
   }
-  fetch();
-}, []);
-
-    useEffect(() => {
-      async function fetch() {
-        const data = await APIvideo(movieId);
-        const video = data.find((elm)=>{
-          return elm.name.includes("Official" || "Trailer");
-        })
-       
-
-        settrailer(video ? video: data[0]);
-
-      }
-      fetch();
-    }, [modalOpen]);
-
-      const handleSubmit = (values) => {
-        const comment = {
-          rating: values.rating,
-          author: values.author,
-          text: values.commentText,
-        };
-
-        console.log(comment);
-        setobjComment(comment);
-        setModalOpen2(false);
-      };
 
 
 
-https: return (
+ return (
   <>
     <div
       className=" pb-5 bgmovieinfo"
@@ -89,14 +105,16 @@ https: return (
               </div>
               <div className="col-md-8">
                 <div className="card-body">
-                  <h5 className="card-title pt-3">{movie.title}</h5>
-                  <p class="card-text pb-3">
-                    <small class="text-">{movie.tagline}</small>
-                  </p>
+                  <h3 className="card-title pt-3">{movie.title}</h3>
+                  <p class="card-text pb-3">{movie.tagline}</p>
                   <dl className="row detailTable">
-                    <dt className="col-sm-3 text-end">Overview:</dt>
+                    <dt className="col-sm-3 text-end descriptiontag">
+                      Overview:
+                    </dt>
                     <dd className="col-sm-9 text-start">{movie.overview}</dd>
-                    <dt className="col-sm-3 text-end">Web page:</dt>
+                    <dt className="col-sm-3 text-end descriptiontag">
+                      {movie.homepage && "Web page:"}
+                    </dt>
                     <dd className="col-sm-9">
                       <a
                         className="text-white"
@@ -106,21 +124,27 @@ https: return (
                         <p className="text-start m-0">{movie.homepage}</p>
                       </a>
                     </dd>
-                    <dt className="col-sm-3 text-end">Relace date:</dt>
+                    <dt className="col-sm-3 text-end descriptiontag">
+                      Relace date:
+                    </dt>
                     <dd className="col-sm-9 text-start">
                       {movie.release_date}
                     </dd>
-                    <dt className="col-sm-3 text-end"> Rating: </dt>
+                    <dt className="col-sm-3 text-end descriptiontag">
+                      Rating:
+                    </dt>
                     <dd className="col-sm-9 text-start">
                       {parseFloat(movie.vote_average).toFixed(1)}
                     </dd>
-                    <dt className="col-sm-3 text-end"> Revenue: </dt>
+                    <dt className="col-sm-3 text-end descriptiontag">
+                      Revenue:
+                    </dt>
                     <dd className="col-sm-9 text-start">
                       $ {movie.revenue && movie.revenue.toLocaleString()}
                     </dd>
                     {objComment.author ? (
                       <>
-                        <dt className="col-sm-3 text-end">
+                        <dt className="col-sm-3 text-end descriptiontag">
                           User: {objComment.author}
                         </dt>
                         <dd className="col-sm-2 text-start">
@@ -148,7 +172,11 @@ https: return (
                   >
                     <i className="fa fa-pencil" /> Add review
                   </button>
-                  <button href="#" className="btn btn-primary m-2">
+                  <button
+                    href="#"
+                    className="btn btn-primary m-2"
+                    onClick={handdleCartclick}
+                  >
                     <i className="fa fa-shopping-cart" /> Add cart
                   </button>
                 </div>
@@ -159,7 +187,7 @@ https: return (
       </div>
     </div>
     <Modal
-      className="trailermodal"
+      className="trailermodal "
       centered
       size="xl"
       isOpen={modalOpen}
@@ -169,7 +197,9 @@ https: return (
         {movie.title} Trailer
       </ModalHeader>
       <ModalBody>
+        {console.log("trailer", trailer)}
         <YouTube
+        
           videoId={trailer ? trailer.key : "none"}
           className="reproductor container"
           opts={{

@@ -5,6 +5,7 @@ import axios from "axios";
 import YouTube from "react-youtube";
 import { Link } from "react-router-dom";
 import { APIlist } from "../features/APIget";
+import { FaFire } from "react-icons/fa";
 import "./Home.css";
 
 const Home = () => {
@@ -15,7 +16,7 @@ const Home = () => {
     const [movies, setMovies] = useState([])
     const [trailer, setsTrailer] = useState(null)
     const [playng, setPlaying] = useState(false); 
-    const [onHover, setonHover] = useState(false); 
+    const [onHover, setonHover] = useState([]); 
     const { movieId } = useParams();
     let data = []
 
@@ -33,48 +34,63 @@ const Home = () => {
       setMovies([...data,...data2]);
     }, 2000);
 
+
   }, []);
 
-const mouseHover=(id)=>{
-console.log("Esta en mouse hover")
-console.log("id",id );
-setonHover(true)
+const mouseHover=(id,index)=>{
+
+const newHoverState = [];
+newHoverState[index] = true;
+setonHover(newHoverState);
 
 }
 
-const mouseLeave = (id) => {
-  console.log("Salio del hover");
-  console.log("id", id);
-  setonHover(false);
+const mouseLeave = (id, index) => {
+
+  setonHover([]);
 };
 
 
 
 
   return (
-    <div className="home-content">
-      <h3 className="text-white mb-5 pb-5"> Popular movies</h3>
+    <div className="home-content" id="home-content">
+      <h3 className="text-white mb-5 pb-5 titlepage">
+        <FaFire className="mb-2 " /> Popular Movies
+      </h3>
       <div className="container mt-3">
-        <div className="row">
-          {movies.map((elm) => (
+        <div className="row offset-md-1">
+          {movies.map((elm, index) => (
             <div
               key={elm.id}
-              className="col-md-3 col-6 col-lg-2 mb-3 pb-0 moviecard "
+              className=" col-md-3  col-6 col-lg-2 mb-3 pb-0 moviecard "
             >
               <Link to={`${elm.id}`}>
                 <img
                   src={`${IMAGE_PATH + elm.poster_path}`}
                   alt={elm.title}
-                  height={300}
                   width="100%"
                   className="imgmovie"
-                  onMouseOver={() => mouseHover(elm.id)}
-                  onMouseLeave={() => mouseLeave(elm.id)}
+                  onMouseEnter={() => mouseHover(elm.id, index)}
+                  onMouseLeave={() => mouseLeave(elm.id, index)}
                 />
-                <div className={onHover ? "hoverText active" : "hoverText"}>
-                  Hello
-                </div>
               </Link>
+              {onHover[index] ? (
+                <>
+                  <div className="rank text-white">
+                    <p className="m-0 p-0 ">
+                      <small>{elm.vote_average}</small>{" "}
+                    </p>
+                    {elm.vote_average > 7.4 ? (
+                      <i className="fa fa-thumbs-o-up"></i>
+                    ) : (
+                      <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                    )}
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </div>
           ))}
         </div>

@@ -11,12 +11,14 @@
 }
 
 .bgmovieinfo{
+        background-color:darkgray;
         padding-top: 200px;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-        box-shadow: 0 0 100px 100px rgb(0, 0, 0, 0.5);
-        box-shadow: 0px 100px 200px rgb(0, 0, 0, 0.8) inset;
+        box-shadow: 0px 0 100px 200px rgba(0, 0, 0, 0.7);
+    
+
 }
 
 .imagedetail{
@@ -33,17 +35,18 @@
 
 .modal-content{
         color: white;
-        background: rgba(0, 0, 0, 0.9);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        background: rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
         backdrop-filter: blur(3.5px);
-        
         text-shadow: 2px 2px 4px #000000;
 
 }
 .btn-close {
         background-color: rgb(255, 255, 255) !important;
-
 }
+
+
+
 
 
 

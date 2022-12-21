@@ -24,29 +24,65 @@
 
 .imgmovie {
   border-radius: 10px;
+  height: 300px;
+  transition: all 2s ease;
+}
+
+.imgmovie:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transition: all 1s ease;
+  opacity: 0.5;
+ 
+ 
 }
 
 .moviecard {
-  height: 330px;
+  height: 300px;
+  padding: 0;
+  margin: 5px;
   transition: all 2s ease;
   transform: scale(1);
+  background-color: rgb(3, 3, 3);
+  border-radius: 10px;
 }
 .moviecard:hover {
-  background: rgba(0, 0, 0, 0.0);
+  background: rgba(0, 0, 0, 0.9);
   transition: all 1s ease;
-  filter: brightness(80%);
-  transform: scale(1.5);
-  z-index: 10;
+  transform: scale(1.2);
+  z-index: 100;
 }
 
 
 .hoverText {
   display: none;
-
+  color: white;
 }
 
 .hoverText.active {
   display: block;
+}
+
+.rank {
+  width: 55px;
+  height: 55px;
+  padding-top: 2px;
+  border-radius: 100%;
+  font-weight: bold;
+  position: relative;
+  top: -325px;
+  left: -20px;
+
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.5px);
+  border: 1px solid rgba(255, 255, 255, 0.21);
+  text-shadow: 2px 2px 4px #000000;
+
+}
+
+.titlepage{
+  position: relative;
+  z-index: 10;
 }
 
 
@@ -56,14 +92,22 @@
   color: rgb(112, 76, 182);
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
+@media (max-width: 640px) {
+  .moviecard {
+    width: 46%;
+    margin-left: auto;
   }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+.descriptiontag {
+  text-align: left !important;
+}
+
+.titlejumbo{
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+.home-content{
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+}
+
 }

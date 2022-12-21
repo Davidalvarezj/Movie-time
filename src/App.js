@@ -23,21 +23,30 @@ function App() {
 
 
 const [searchkey, setSearchkey] = useState("");
-
+const [cartArray, setCartArray] = useState([]);
 
 
 
 
 	return (
     <div className="App">
-      <Header setSearchkey={setSearchkey} />
+      <Header
+        setSearchkey={setSearchkey}
+        cartArray={cartArray}
+        setCartArray={setCartArray}
+      />
       <Jumbo />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/toprated" element={<Toprated />} />
         <Route path="/Upcoming" element={<Upcomming />} />
         <Route path="/Nowplaying" element={<Nowplaying />} />
-        <Route path="/:movieId" element={<Movieinfo />} />
+        <Route
+          path="/:movieId"
+          element={
+            <Movieinfo cartArray={cartArray} setCartArray={setCartArray} />
+          }
+        />
         <Route path="/Search" element={<Moviesearch searchkey={searchkey} />} />
       </Routes>
       <Footer />
