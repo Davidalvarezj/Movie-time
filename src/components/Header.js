@@ -65,7 +65,7 @@ const Header = ({ setSearchkey, cartArray, setCartArray }) => {
         expand="md"
         className={navbar ? "navbar active" : "navbar"}
       >
-        <NavbarBrand href="/" className="ms-5 ">
+        <NavbarBrand href="/Movie-time" className="ms-5 ">
           <h4 className=" text-white me-5">
             Movie-Time <FaFilm className="" />
           </h4>
