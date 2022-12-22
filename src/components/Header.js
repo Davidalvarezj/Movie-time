@@ -10,6 +10,10 @@ import { useNavigate } from "react-router-dom";
 import Cart from "./Cart";
 
 
+
+
+
+
 const Header = ({ setSearchkey, cartArray, setCartArray }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchval, setsearchval] = useState("");
@@ -41,7 +45,14 @@ const Header = ({ setSearchkey, cartArray, setCartArray }) => {
   window.addEventListener("scroll", changeNav);
 
 
+ const handleKeyDown = (event) => {
+   if (event.key === "Enter") {
+       navigate("/Search")
+       handleSummit()
 
+
+   }
+ };
 
 
 
@@ -102,6 +113,7 @@ const Header = ({ setSearchkey, cartArray, setCartArray }) => {
                   placeholder="Search movie..."
                   aria-describedby="button-addon2"
                   onChange={handleSearch}
+                  onKeyDown={handleKeyDown}
                 />
                 <NavLink className="" to="/Search" on>
                   <button

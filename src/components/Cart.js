@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 
 
 const Cart = ({ cartArray, setCartArray, setrerenderHeader }) => {
-  console.log(cartArray);
 
   const [rerender, setrerender] = useState(false);
   let total = 0;
@@ -40,11 +39,11 @@ const Cart = ({ cartArray, setCartArray, setrerenderHeader }) => {
             </div>
             <div className="col ">{elm.name}</div>
             <div className="col">${elm.price.toLocaleString()}</div>
-            <div className="col-1 ">
+            <div className="col-1 h5 pt-1">
               <i
-                class="fa fa-times fa-lg"
+                class="fa fa-times-circle fa-lg"
                 onClick={() => deleteClick(index)}
-                style={{cursor:"pointer"}}
+                style={{ cursor: "pointer" }}
               ></i>
             </div>
           </div>

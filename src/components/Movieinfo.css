@@ -1,4 +1,9 @@
 
+
+.card-title, .card-text{
+        font-family: 'DM Serif Display', serif;
+}
+
 .card-content{
 
         background: rgba(0, 0, 0, 0.4);
@@ -7,7 +12,21 @@
         border: 1px solid rgba(255, 255, 255, 0.21);
         text-shadow: 2px 2px 4px #000000;
         border-radius: 10px;
-   
+
+}
+
+option{
+        color:white; 
+        background:transparent;
+        background: rgba(0, 0, 0, 0.8);
+}
+#namefield::placeholder {
+        color: rgb(238, 229, 229);
+        background: transparent;
+}
+#namefield {
+        color: rgb(238, 229, 229);
+        background: transparent;
 }
 
 .bgmovieinfo{

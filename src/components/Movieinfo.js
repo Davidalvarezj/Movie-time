@@ -20,7 +20,7 @@ import {
 const Movieinfo = ({ cartArray, setCartArray }) => {
   const [movie, setMovie] = useState([]);
   const [trailer, settrailer] = useState([]);
-  const [objComment, setobjComment] = useState([]);
+  const [ArrComment, setobjComment] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(false);
 
@@ -38,14 +38,13 @@ const Movieinfo = ({ cartArray, setCartArray }) => {
   }, []);
 
   useEffect(() => {
-    console.log("")
+
     async function fetch() {
       const data = await APIvideo(movieId);
       const video = data.find((elm) => {
         return elm.name.includes("Official") || elm.name.includes("Trailer") || elm.name.includes("TRAILER");
       });
-      console.log("video",video)
-      console.log("data",data)
+   
       settrailer(video ? video : data[0]);
     }
     fetch();
@@ -53,19 +52,12 @@ const Movieinfo = ({ cartArray, setCartArray }) => {
 
 
 
-
-
-
-
-
-
-
   const handleSubmit = (values) => {
-    const comment = {
+    const comment = [...ArrComment,{
       rating: values.rating,
       author: values.author,
       text: values.commentText,
-    };
+    }];
     setobjComment(comment);
     setModalOpen2(false);
   };
@@ -78,7 +70,7 @@ const Movieinfo = ({ cartArray, setCartArray }) => {
       price: movie.revenue,
     };
     setCartArray([...cartArray, cartItem]);
-    console.log(cartItem);
+
   }
 
 
@@ -105,8 +97,8 @@ const Movieinfo = ({ cartArray, setCartArray }) => {
               </div>
               <div className="col-md-8">
                 <div className="card-body">
-                  <h3 className="card-title pt-3">{movie.title}</h3>
-                  <p class="card-text pb-3">{movie.tagline}</p>
+                  <h1 className="card-title pt-3 ">{movie.title}</h1>
+                  <p class="card-text pb-3 "><em>{movie.tagline}</em></p>
                   <dl className="row detailTable">
                     <dt className="col-sm-3 text-end descriptiontag">
                       Overview:
@@ -142,19 +134,24 @@ const Movieinfo = ({ cartArray, setCartArray }) => {
                     <dd className="col-sm-9 text-start">
                       $ {movie.revenue && movie.revenue.toLocaleString()}
                     </dd>
-                    {objComment.author ? (
+                    {!!ArrComment.length && <><dt className="col-sm-3 text-end descriptiontag mt-3 mb-2 ">
+                      <strong>Users Review:</strong>
+                    </dt>
+                    <dd className="col-sm-9 text-start">
+                    </dd></> }
+                    {ArrComment.length>0 ? ArrComment.map((elm, index) => (
                       <>
                         <dt className="col-sm-3 text-end descriptiontag">
-                          User: {objComment.author}
+                          <em>{elm.author}</em>
                         </dt>
                         <dd className="col-sm-2 text-start">
-                          Rating: {objComment.rating}
+                          <em>Rating: {elm.rating}</em>
                         </dd>
                         <dd className="col-sm-7 text-start">
-                          {objComment.text}
+                          <em>{elm.text}</em>
                         </dd>
                       </>
-                    ) : (
+                    )) : (
                       <dt className="col-sm-3 "></dt>
                     )}
                   </dl>
@@ -197,8 +194,7 @@ const Movieinfo = ({ cartArray, setCartArray }) => {
         {movie.title} Trailer
       </ModalHeader>
       <ModalBody>
-        {console.log("trailer", trailer)}
-        <YouTube
+          <YouTube
         
           videoId={trailer ? trailer.key : "none"}
           className="reproductor container"
@@ -240,7 +236,7 @@ const Movieinfo = ({ cartArray, setCartArray }) => {
             <FormGroup>
               <Label htmlFor="rating"> Rating: 1-10 </Label>
 
-              <Field name="rating" as="select" className="form-control">
+              <Field name="rating" as="select" className="form-control" style={{backgroundColor: "transparent", color: "white"}}>
                 <option>Select...</option>
                 <option>1</option>
                 <option>2</option>
@@ -264,6 +260,8 @@ const Movieinfo = ({ cartArray, setCartArray }) => {
                 name="author"
                 placeholder="Your Name"
                 className="form-control"
+                style={{backgroundColor: "transparent", color: "white"}}
+                id="namefield"
               />
               <ErrorMessage name="author">
                 {(msg) => <p className="text-danger">{msg}</p>}
@@ -277,6 +275,7 @@ const Movieinfo = ({ cartArray, setCartArray }) => {
                 as="textarea"
                 rows="12"
                 className="form-control"
+                style={{backgroundColor: "transparent", color: "white"}}
               />
             </FormGroup>
             <Button type="submit" color="primary">

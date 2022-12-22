@@ -58,8 +58,8 @@ const Footer = () => {
     </div>
     <div className="conatiner">
         <div className="row text-center">
-            <div className="col">
-            <a href="https://github.com/Davidalvarezj" target="_blank" className="text-white firma" >Created by David AJ</a>
+            <div className="col mt-4">
+            <a href="https://github.com/Davidalvarezj" target="_blank" className="text-white firma" >- Created by David AJ -</a>
             </div>
         </div>
     </div>

@@ -8,9 +8,9 @@ import Nowplaying from "./components/Nowplaying";
 import Movieinfo from "./components/Movieinfo";
 import Moviesearch from "./components/Moviesearch";
 import Footer from "./components/Footer";
-import { Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { APIsearch } from "./features/APIget";
+
 import './App.css';
 
 
@@ -28,29 +28,37 @@ const [cartArray, setCartArray] = useState([]);
 
 
 
+
 	return (
-    <div className="App">
-      <Header
-        setSearchkey={setSearchkey}
-        cartArray={cartArray}
-        setCartArray={setCartArray}
-      />
-      <Jumbo />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/toprated" element={<Toprated />} />
-        <Route path="/Upcoming" element={<Upcomming />} />
-        <Route path="/Nowplaying" element={<Nowplaying />} />
-        <Route
-          path="/:movieId"
-          element={
-            <Movieinfo cartArray={cartArray} setCartArray={setCartArray} />
-          }
+
+      <div className="App">
+        <Header
+          setSearchkey={setSearchkey}
+          cartArray={cartArray}
+          setCartArray={setCartArray}
         />
-        <Route path="/Search" element={<Moviesearch searchkey={searchkey} />} />
-      </Routes>
-      <Footer />
-    </div>
+        <Jumbo />
+       
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/toprated" element={<Toprated />} />
+          <Route path="/Upcoming" element={<Upcomming />} />
+          <Route path="/Nowplaying" element={<Nowplaying />} />
+          <Route
+            path="/:movieId"
+            element={
+              <Movieinfo cartArray={cartArray} setCartArray={setCartArray} />
+            }
+          />
+          <Route
+            path="/Search"
+            element={<Moviesearch searchkey={searchkey} />}
+          />
+        </Routes>
+
+        <Footer />
+      </div>
+   
   );
 }
 
