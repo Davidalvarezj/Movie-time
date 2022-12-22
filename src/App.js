@@ -15,7 +15,7 @@ import './App.css';
 
 
 
-
+// test
 
 
 
@@ -37,8 +37,7 @@ const [cartArray, setCartArray] = useState([]);
           cartArray={cartArray}
           setCartArray={setCartArray}
         />
-        <Jumbo />
-       
+        <Jumbo />    
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/toprated" element={<Toprated />} />
