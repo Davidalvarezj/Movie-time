@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/Movie-time/static/css/main.fc47b8e1.css",
+    "main.js": "/Movie-time/static/js/main.cfa32ef8.js",
+    "static/media/4fxxbm4opjd31.webp": "/Movie-time/static/media/4fxxbm4opjd31.37219f89d3cf5437c34d.webp",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/Movie-time/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/fontawesome-webfont.eot": "/Movie-time/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/Movie-time/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/Movie-time/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/Movie-time/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/lobster-latin-400.woff": "/Movie-time/static/media/lobster-latin-400.e4473cd7170c39b44c99.woff",
+    "static/media/lobster-latin-400.woff2": "/Movie-time/static/media/lobster-latin-400.484e338f970ddc242388.woff2",
+    "static/media/open-sans-latin-800.woff": "/Movie-time/static/media/open-sans-latin-800.8ab0bbdd48f276f4ba56.woff",
+    "static/media/open-sans-latin-700.woff": "/Movie-time/static/media/open-sans-latin-700.f24f4bcef8a4a0eb6345.woff",
+    "static/media/open-sans-latin-600.woff": "/Movie-time/static/media/open-sans-latin-600.7e06644bbdc83069cec8.woff",
+    "static/media/open-sans-latin-300.woff": "/Movie-time/static/media/open-sans-latin-300.38bcfba2c37aac23453f.woff",
+    "static/media/open-sans-latin-400.woff": "/Movie-time/static/media/open-sans-latin-400.347639ec49f4b2884a96.woff",
+    "static/media/open-sans-latin-800italic.woff": "/Movie-time/static/media/open-sans-latin-800italic.3d3bd0835c258f5bd0bc.woff",
+    "static/media/open-sans-latin-300italic.woff": "/Movie-time/static/media/open-sans-latin-300italic.3ab0502d6136886180cd.woff",
+    "static/media/open-sans-latin-600italic.woff": "/Movie-time/static/media/open-sans-latin-600italic.8d513ad94829ef391cd1.woff",
+    "static/media/open-sans-latin-700italic.woff": "/Movie-time/static/media/open-sans-latin-700italic.e961bdb476db6860f20f.woff",
+    "static/media/open-sans-latin-400italic.woff": "/Movie-time/static/media/open-sans-latin-400italic.56bdf84751634e8deaff.woff",
+    "static/media/open-sans-latin-800.woff2": "/Movie-time/static/media/open-sans-latin-800.1666787ea3ff3941e764.woff2",
+    "static/media/open-sans-latin-700.woff2": "/Movie-time/static/media/open-sans-latin-700.92425c623934facef057.woff2",
+    "static/media/open-sans-latin-300.woff2": "/Movie-time/static/media/open-sans-latin-300.b871ad6e5cbe2a1c8c73.woff2",
+    "static/media/open-sans-latin-600.woff2": "/Movie-time/static/media/open-sans-latin-600.9526470852428b4340ed.woff2",
+    "static/media/open-sans-latin-400.woff2": "/Movie-time/static/media/open-sans-latin-400.f57a62e9efddf6ace18b.woff2",
+    "static/media/open-sans-latin-800italic.woff2": "/Movie-time/static/media/open-sans-latin-800italic.b5bc26612cdf4d47affd.woff2",
+    "static/media/open-sans-latin-700italic.woff2": "/Movie-time/static/media/open-sans-latin-700italic.2a0783bd1c6c1469558b.woff2",
+    "static/media/open-sans-latin-300italic.woff2": "/Movie-time/static/media/open-sans-latin-300italic.b45d9997b704ab3daad1.woff2",
+    "static/media/open-sans-latin-600italic.woff2": "/Movie-time/static/media/open-sans-latin-600italic.cc4bf5b2955147801c02.woff2",
+    "static/media/open-sans-latin-400italic.woff2": "/Movie-time/static/media/open-sans-latin-400italic.bb915319f59c02c348a6.woff2",
+    "index.html": "/Movie-time/index.html",
+    "main.fc47b8e1.css.map": "/Movie-time/static/css/main.fc47b8e1.css.map",
+    "main.cfa32ef8.js.map": "/Movie-time/static/js/main.cfa32ef8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fc47b8e1.css",
+    "static/js/main.cfa32ef8.js"
+  ]
+}
