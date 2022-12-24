@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Movie-time/static/css/main.fc47b8e1.css",
-    "main.js": "/Movie-time/static/js/main.5a6c5dae.js",
+    "main.js": "/Movie-time/static/js/main.237e41fc.js",
     "static/media/4fxxbm4opjd31.webp": "/Movie-time/static/media/4fxxbm4opjd31.37219f89d3cf5437c34d.webp",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/Movie-time/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fontawesome-webfont.eot": "/Movie-time/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
@@ -32,10 +32,10 @@
     "static/media/open-sans-latin-400italic.woff2": "/Movie-time/static/media/open-sans-latin-400italic.bb915319f59c02c348a6.woff2",
     "index.html": "/Movie-time/index.html",
     "main.fc47b8e1.css.map": "/Movie-time/static/css/main.fc47b8e1.css.map",
-    "main.5a6c5dae.js.map": "/Movie-time/static/js/main.5a6c5dae.js.map"
+    "main.237e41fc.js.map": "/Movie-time/static/js/main.237e41fc.js.map"
   },
   "entrypoints": [
     "static/css/main.fc47b8e1.css",
-    "static/js/main.5a6c5dae.js"
+    "static/js/main.237e41fc.js"
   ]
 }
