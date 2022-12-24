@@ -15,7 +15,7 @@ import './App.css';
 
 
 
-// test
+
 
 
 
@@ -24,40 +24,56 @@ function App() {
 
 const [searchkey, setSearchkey] = useState("");
 const [cartArray, setCartArray] = useState([]);
+const [scroled, setscroled] = useState(false);
 
 
 
 
 
 	return (
-
-      <div className="App">
-        <Header
-          setSearchkey={setSearchkey}
-          cartArray={cartArray}
-          setCartArray={setCartArray}
+    <div className="App">
+      <Header
+        setSearchkey={setSearchkey}
+        cartArray={cartArray}
+        setCartArray={setCartArray}
+        scroled={scroled}
+        setscroled={setscroled}
+      />
+      <Jumbo />
+      <Routes>
+        <Route path="/" element={<Home setscroled={setscroled} />} />
+        <Route
+          path="/toprated"
+          element={<Toprated setscroled={setscroled} />}
         />
-        <Jumbo />    
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/toprated" element={<Toprated />} />
-          <Route path="/Upcoming" element={<Upcomming />} />
-          <Route path="/Nowplaying" element={<Nowplaying />} />
-          <Route
-            path="/:movieId"
-            element={
-              <Movieinfo cartArray={cartArray} setCartArray={setCartArray} />
-            }
-          />
-          <Route
-            path="/Search"
-            element={<Moviesearch searchkey={searchkey} />}
-          />
-        </Routes>
+        <Route
+          path="/Upcoming"
+          element={<Upcomming setscroled={setscroled} />}
+        />
+        <Route
+          path="/Nowplaying"
+          element={<Nowplaying setscroled={setscroled} />}
+        />
+        <Route
+          path="/:movieId"
+          element={
+            <Movieinfo
+              cartArray={cartArray}
+              setCartArray={setCartArray}
+              setscroled={setscroled}
+            />
+          }
+        />
+        <Route
+          path="/Search"
+          element={
+            <Moviesearch searchkey={searchkey} setscroled={setscroled} />
+          }
+        />
+      </Routes>
 
-        <Footer />
-      </div>
-   
+      <Footer />
+    </div>
   );
 }
 

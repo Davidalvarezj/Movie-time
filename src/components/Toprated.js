@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import {APIlist} from '../features/APIget'
 import { Link } from "react-router-dom";
 import { FaListOl } from "react-icons/fa";
+import { useScrollTo } from "react-use-window-scroll";
 import "./Toprated.css";
 
 
@@ -11,9 +12,16 @@ import "./Toprated.css";
 
 const Toprated = () => {
 const [movies, setMovies] = useState([]);
-  const [onHover, setonHover] = useState([]); 
+const [onHover, setonHover] = useState([]); 
 const IMAGE_PATH = "https://www.themoviedb.org/t/p/original";
 let data = [];
+const scrollTo = useScrollTo();
+let scroll = false;
+const heigth = window.innerHeight * 0.4;
+
+
+
+
 
 
   useEffect(() => {
@@ -26,8 +34,20 @@ let data = [];
     setTimeout(async () => {
       const data2 = await APIlist("top_rated", 2);
       setMovies([...data, ...data2]);
-      
-    }, 2000);
+    }, 200);
+
+
+
+  setTimeout(() => {
+    if (!scroll) {
+      scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      scrollTo({ top: heigth, left: 0, behavior: "smooth" });
+      scroll = true;
+    }
+  }, 100);
+
+
+
   }, []);
 
   const mouseHover = (id, index) => {
@@ -46,8 +66,8 @@ let data = [];
 
 
 	return (
-    <div className="home-content">
-      <h3 className="text-white mb-5 pb-5 titlepage">
+    <div className="home-content" id="home-content">
+      <h3 className="text-white mb-5 pb-5 titlepage" id="toprated">
         <FaListOl className="mb-2" /> Top Rated{" "}
       </h3>
       <div className="container mt-3">

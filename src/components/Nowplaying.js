@@ -2,12 +2,27 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { APIlist } from "../features/APIget";
 import { Link } from "react-router-dom";
+import { useScrollTo } from "react-use-window-scroll";
+
+
+
+
+
 
 const Nowplaying = () => {
   const [movies, setMovies] = useState([]);
     const [onHover, setonHover] = useState([]); 
   const IMAGE_PATH = "https://www.themoviedb.org/t/p/original";
   let data = [];
+  const scrollTo = useScrollTo();
+  let scroll = false;
+  const heigth = window.innerHeight * 0.4;
+
+
+
+
+
+
   
     useEffect(() => {
       async function fetch() {
@@ -19,21 +34,26 @@ const Nowplaying = () => {
       setTimeout(async () => {
         const data2 = await APIlist("now_playing", 2);
         setMovies([...data, ...data2]);
-      }, 2000);
+      }, 200);
+
+        setTimeout(() => {
+          if (!scroll) {
+            scrollTo({ top: 0, left: 0, behavior: "smooth" });
+            scrollTo({ top: heigth, left: 0, behavior: "smooth" });
+            scroll = true;
+          }
+        }, 100);
     }, []);
 
 
       const mouseHover = (id, index) => {
-        console.log("Esta en mouse hover");
-        console.log("id", id);
         const newHoverState = [];
         newHoverState[index] = true;
         setonHover(newHoverState);
       };
 
       const mouseLeave = (id, index) => {
-        console.log("Salio del hover");
-        console.log("id", id);
+
         setonHover([]);
       };
 

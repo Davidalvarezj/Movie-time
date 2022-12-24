@@ -15,6 +15,7 @@ import {
   FormGroup,
   Label,
 } from "reactstrap";
+import { useScrollTo } from "react-use-window-scroll";
 
 
 const Movieinfo = ({ cartArray, setCartArray }) => {
@@ -23,6 +24,12 @@ const Movieinfo = ({ cartArray, setCartArray }) => {
   const [ArrComment, setobjComment] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(false);
+  const scrollTo = useScrollTo();
+  let scroll = false;
+  const heigth = window.innerHeight * 0.4;
+
+
+
 
   const IMAGE_PATH = "https://www.themoviedb.org/t/p/original";
     const IMAGE_PATH_SMALL = "https://www.themoviedb.org/t/p/w500";
@@ -33,8 +40,17 @@ const Movieinfo = ({ cartArray, setCartArray }) => {
     async function fetch() {
       const data = await APIdetail(movieId);
       setMovie(data);
+
     }
     fetch();
+
+  setTimeout(() => {
+    if (!scroll) {
+      scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      scrollTo({ top: heigth, left: 0, behavior: "smooth" });
+      scroll = true;
+    }
+  }, 100);
   }, []);
 
   useEffect(() => {
@@ -104,8 +120,14 @@ const Movieinfo = ({ cartArray, setCartArray }) => {
                       Overview:
                     </dt>
                     <dd className="col-sm-9 text-start">{movie.overview}</dd>
+
                     <dt className="col-sm-3 text-end descriptiontag">
-                      {movie.homepage && "Web page:"}
+                      Genres:
+                    </dt>
+                        <dd className="col-sm-9 text-start">{!!movie.genres && movie.genres.map((elm,index)=>(<div key={index}>{elm.name}</div>))}</dd>
+                    
+                    <dt className="col-sm-3 text-end descriptiontag">
+                      {movie.homepage && "Official website:"}
                     </dt>
                     <dd className="col-sm-9">
                       <a
@@ -117,7 +139,7 @@ const Movieinfo = ({ cartArray, setCartArray }) => {
                       </a>
                     </dd>
                     <dt className="col-sm-3 text-end descriptiontag">
-                      Relace date:
+                      Relase date:
                     </dt>
                     <dd className="col-sm-9 text-start">
                       {movie.release_date}

@@ -2,6 +2,7 @@ import React from 'react'
 import { APIsearch } from "../features/APIget";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useScrollTo } from "react-use-window-scroll";
  const IMAGE_PATH = "https://www.themoviedb.org/t/p/original";
 
 
@@ -14,6 +15,11 @@ const Moviesearch = ({ searchkey }) => {
 const [movies, setMovies] = useState([]);
       const [onHover, setonHover] = useState([]); 
 const [serchedmovies, setSerchedmovies] = useState([]);
+  const scrollTo = useScrollTo();
+  let scroll = false;
+  const heigth = window.innerHeight * 0.4;
+
+
 
 useEffect(() => {
     async function fetch() {
@@ -21,6 +27,16 @@ useEffect(() => {
 		setMovies(data);
     }
     fetch();
+
+
+
+  setTimeout(() => {
+    if (!scroll) {
+      scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      scrollTo({ top: heigth, left: 0, behavior: "smooth" });
+      scroll = true;
+    }
+  }, 100);
 }, [searchkey]);
 
       const mouseHover = (id, index) => {
@@ -41,6 +57,12 @@ useEffect(() => {
         <i class="fa fa-search"></i> Movie Search: "{searchkey}"
       </h3>
       <div className="container mt-3">
+        {!movies.length && (
+          <h5 className="text-white">
+            No Movies found... <i class="fa fa-frown-o"></i>
+          </h5>
+        )}
+
         <div className="row offset-md-1">
           {movies.map((elm, index) => (
             <div

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Navbar, NavbarBrand, Collapse, NavbarToggler, Nav, NavItem } from "reactstrap";
 import "./Header.css";
 import { FaFilm } from "react-icons/fa";
@@ -7,6 +7,7 @@ import { FaFire } from "react-icons/fa";
 import { FaListOl } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useScrollBy } from "react-use-window-scroll";
 import Cart from "./Cart";
 
 
@@ -14,14 +15,22 @@ import Cart from "./Cart";
 
 
 
-const Header = ({ setSearchkey, cartArray, setCartArray }) => {
+const Header = ({
+  setSearchkey,
+  cartArray,
+  setCartArray,
+  setscroled,
+  scroled,
+}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchval, setsearchval] = useState("");
   const [navbar, setNavbar] = useState(false);
   const [openCart, setopenCart] = useState(false);
   const [rerender, setrerenderHeader] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const scrolldownref = useRef(null);
 
+  const scrollBy = useScrollBy();
 
   const handleSearch = (event) => {
     setsearchval(event.target.value);
@@ -30,8 +39,7 @@ const Header = ({ setSearchkey, cartArray, setCartArray }) => {
   const handleSummit = () => {
     setSearchkey(searchval);
     document.getElementById("myInput").value = "";
-    setMenuOpen(false)
-    
+    setMenuOpen(false);
   };
 
   const changeNav = () => {
@@ -44,17 +52,21 @@ const Header = ({ setSearchkey, cartArray, setCartArray }) => {
 
   window.addEventListener("scroll", changeNav);
 
-
- const handleKeyDown = (event) => {
-   if (event.key === "Enter") {
-       navigate("/Search")
-       handleSummit()
-
-
-   }
- };
-
-
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      navigate("/Search");
+      handleSummit();
+    }
+  };
+  const handlleclick = () => {
+    // console.log("click");
+    // if (!scroled) {
+    //   const heigth = window.innerHeight * 0.6;
+    //   console.log(heigth);
+    //   scrollBy(heigth, 0);
+    //   setscroled(true);
+    // }
+  };
 
   return (
     <>
@@ -80,7 +92,13 @@ const Header = ({ setSearchkey, cartArray, setCartArray }) => {
         />
         <Collapse navbar isOpen={menuOpen}>
           <Nav className="ms-auto text-white " navbar>
-            <NavItem className="me-4 fs-0.5" onClick={() => setMenuOpen(false)}>
+            <NavItem
+              className="me-4 fs-0.5"
+              onClick={() => {
+                setMenuOpen(false);
+                handlleclick();
+              }}
+            >
               <NavLink className="nav-link" to="/">
                 <FaFire className="fa" /> Popular
               </NavLink>

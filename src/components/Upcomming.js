@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { APIlist } from "../features/APIget";
 import { Link } from "react-router-dom";
+import { useScrollTo } from "react-use-window-scroll";
 
 
 const Upcoming = () => {
@@ -9,6 +10,12 @@ const Upcoming = () => {
       const [onHover, setonHover] = useState([]); 
   const IMAGE_PATH = "https://www.themoviedb.org/t/p/original";
   let data = [];
+  const scrollTo = useScrollTo();
+  let scroll = false;
+  const heigth = window.innerHeight * 0.4;
+
+
+
 
   useEffect(() => {
     async function fetch() {
@@ -20,7 +27,15 @@ const Upcoming = () => {
     setTimeout(async () => {
       const data2 = await APIlist("upcoming", 2);
       setMovies([...data, ...data2]);
-    }, 2000);
+    }, 200);
+
+    setTimeout(() => {
+      if (!scroll) {
+        scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        scrollTo({ top: heigth, left: 0, behavior: "smooth" });
+        scroll = true;
+      }
+    }, 100);
   }, []);
 
 

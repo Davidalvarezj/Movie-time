@@ -6,50 +6,54 @@ import YouTube from "react-youtube";
 import { Link } from "react-router-dom";
 import { APIlist } from "../features/APIget";
 import { FaFire } from "react-icons/fa";
+import { useScrollTo } from "react-use-window-scroll";
 import "./Home.css";
 
 const Home = () => {
+  const API =
+    "https://api.themoviedb.org/3/movie/popular?api_key=6642151dc98f6562ab971bc2b1c00fca&language=en-US&page=";
+  const IMAGE_PATH = "https://www.themoviedb.org/t/p/original";
 
-    const API = 'https://api.themoviedb.org/3/movie/popular?api_key=6642151dc98f6562ab971bc2b1c00fca&language=en-US&page=';
-    const IMAGE_PATH = "https://www.themoviedb.org/t/p/original";
-
-    const [movies, setMovies] = useState([])
-    const [trailer, setsTrailer] = useState(null)
-    const [playng, setPlaying] = useState(false); 
-    const [onHover, setonHover] = useState([]); 
-    const { movieId } = useParams();
-    let data = []
-
+  const [movies, setMovies] = useState([]);
+  const [trailer, setsTrailer] = useState(null);
+  const [playng, setPlaying] = useState(false);
+  const [onHover, setonHover] = useState([]);
+  const { movieId } = useParams();
+    const scrollTo = useScrollTo();
+    let scroll = false;
+    const heigth = window.innerHeight * 0.4;
+  let data = [];
 
   useEffect(() => {
     async function fetch() {
-      data = await APIlist("popular",1);
+      data = await APIlist("popular", 1);
       setMovies(data);
-     
-   }
-    fetch()
+    }
+    fetch();
 
-    setTimeout(async() => {
+    setTimeout(async () => {
       const data2 = await APIlist("popular", 2);
-      setMovies([...data,...data2]);
-    }, 2000);
+      setMovies([...data, ...data2]);
+    }, 200);
 
+  setTimeout(() => {
+    if (!scroll) {
+      scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
+      scroll = true;
+    }
+  }, 100);
   }, []);
 
-const mouseHover=(id,index)=>{
+  const mouseHover = (id, index) => {
+    const newHoverState = [];
+    newHoverState[index] = true;
+    setonHover(newHoverState);
+  };
 
-const newHoverState = [];
-newHoverState[index] = true;
-setonHover(newHoverState);
-
-}
-
-const mouseLeave = (id, index) => {
-
-  setonHover([]);
-};
-
+  const mouseLeave = (id, index) => {
+    setonHover([]);
+  };
 
 
 
@@ -97,6 +101,6 @@ const mouseLeave = (id, index) => {
       </div>
     </div>
   );
-}
+};
 
 export default Home
