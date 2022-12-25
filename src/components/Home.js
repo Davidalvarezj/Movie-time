@@ -43,6 +43,8 @@ const Home = () => {
       scroll = true;
     }
   }, 100);
+
+  console.log("start")
   }, []);
 
   const mouseHover = (id, index) => {

@@ -139,7 +139,7 @@ const Movieinfo = ({ cartArray, setCartArray }) => {
                       </a>
                     </dd>
                     <dt className="col-sm-3 text-end descriptiontag">
-                      Relase date:
+                      Release date:
                     </dt>
                     <dd className="col-sm-9 text-start">
                       {movie.release_date}
